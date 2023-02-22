@@ -1,0 +1,144 @@
+.cubeContainer *,
+.cubeContainer *:before,
+.cubeContainer *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.aspectContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  margin: 0 auto;
+}
+
+.viewport {
+  position: absolute;
+  inset: 0;
+  perspective: calc(var(--cube-size) * 4);
+  perspective-origin: 50% calc(var(--cube-size) * 2);
+  display: flex;
+  align-items: center;
+}
+
+.cube {
+  position: relative;
+  margin: 0 auto;
+  height: var(--cube-size);
+  width: var(--cube-size);
+  transform-style: preserve-3d;
+  transform: rotateX(136deg) rotateY(1122deg);
+}
+
+.face {
+  background-color: #ffffff;
+  overflow: hidden;
+  position: absolute;
+  opacity: 1;
+  height: var(--cube-size);
+  width: var(--cube-size);
+  -webkit-touch-callout: none;
+  touch-callout: none;
+  user-select: none;
+  border: 1px solid #454545;
+}
+
+.cube > div > div.cubeImage {
+  width: var(--cube-size);
+  height: var(--cube-size);
+  transform: rotate(180deg);
+  text-align: center;
+  color: #454545;
+  transition: color 600ms;
+}
+
+.cube > div > div.cubeImage.active {
+  font-weight: bold;
+}
+
+.cube > div:hover {
+  cursor: pointer;
+}
+
+.cube > div:active {
+  cursor: pointer;
+}
+
+.cube > div:first-child {
+  transform: rotateX(90deg) translateZ(calc(var(--cube-size) / 2));
+  outline: 1px solid transparent;
+}
+
+.cube > div:nth-child(2) {
+  transform: translateZ(calc(var(--cube-size) / 2));
+  outline: 1px solid transparent;
+}
+
+.cube > div:nth-child(3) {
+  transform: rotateY(90deg) translateZ(calc(var(--cube-size) / 2));
+  outline: 1px solid transparent;
+}
+
+.cube > div:nth-child(4) {
+  transform: rotateY(180deg) translateZ(calc(var(--cube-size) / 2));
+  outline: 1px solid transparent;
+}
+
+.cube > div:nth-child(5) {
+  transform: rotateY(-90deg) translateZ(calc(var(--cube-size) / 2));
+  outline: 1px solid transparent;
+}
+
+.cube > div:nth-child(6) {
+  transform: rotateX(-90deg) rotate(180deg)
+    translateZ(calc(var(--cube-size) / 2));
+  outline: 1px solid transparent;
+}
+
+.row,
+.col {
+  position: relative;
+}
+
+.row {
+  display: flex;
+  height: calc(var(--cube-size) / var(--grid-size));
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.col {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--cube-size) / var(--grid-size));
+  pointer-events: auto;
+  font-size: calc((var(--cube-size) / var(--grid-size)) * 0.6);
+  font-weight: bold;
+}
+
+.col:last-child {
+  border-right: 0;
+}
+
+.rowDivider {
+  position: absolute;
+  left: 0;
+  top: calc((var(--cube-size) / var(--grid-size)) * var(--divider-num));
+  width: 100%;
+  height: 1px;
+  background: #454545;
+}
+
+.colDivider {
+  position: absolute;
+  top: 0;
+  left: calc((var(--cube-size) / var(--grid-size)) * var(--divider-num));
+  width: 1px;
+  height: 100%;
+  background: #454545;
+}
